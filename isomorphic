@@ -1,0 +1,48 @@
+fn is_isomorphic(mut s: String, mut t: String) -> bool {
+    let s_len = s.len();
+
+    for i in 0..s_len {
+        t[i..s_len] = s.replace(&t[..][i], &s[..][i]);
+    }
+
+    if s == t {
+        true
+    } else {
+        false
+    }
+}
+
+#[cfg(tests)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn example1() {
+        let s = String::from("egg");
+        let t = String::from("add");
+        let correct = true;
+        let result = pivot_index(s, t);
+
+        assert_eq!(correct, result);
+    }
+
+    #[test]
+    fn example2() {
+        let s = String::from("foo");
+        let t = String::from("bar");
+        let correct = false;
+        let result = pivot_index(s, t);
+
+        assert_eq!(correct, result);
+    }
+
+    #[test]
+    fn example3() {
+        let s = String::from("paper");
+        let t = String::from("title");
+        let correct = true;
+        let result = pivot_index(s, t);
+
+        assert_eq!(correct, result);
+    }
+}
